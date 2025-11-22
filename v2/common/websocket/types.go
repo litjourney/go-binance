@@ -20,10 +20,8 @@ type WsApiRequest struct {
 	Params map[string]interface{} `json:"params"`
 }
 
-var (
-	// WriteSyncWsTimeout defines timeout for WriteSync method of client_ws
-	WriteSyncWsTimeout = 5 * time.Second
-)
+// WriteSyncWsTimeout defines timeout for WriteSync method of client_ws
+var WriteSyncWsTimeout = 5 * time.Second
 
 const (
 	// apiKey define key for websocket API parameters
@@ -42,6 +40,15 @@ const (
 
 	// OrderPlaceSpotWsApiMethod define method for creation order via websocket API
 	OrderPlaceSpotWsApiMethod WsApiMethodType = "order.place"
+
+	// OrderCancelSpotWsApiMethod define method for cancel order via websocket API
+	OrderCancelSpotWsApiMethod WsApiMethodType = "order.cancel"
+
+	// OrderStatusSpotWsApiMethod define method for query order via websocket API
+	OrderStatusSpotWsApiMethod WsApiMethodType = "order.status"
+
+	// OrderOpenStatusSpotWsApiMethod define method for query open orders via websocket API
+	OrderOpenStatusSpotWsApiMethod WsApiMethodType = "openOrders.status"
 
 	// OrderListPlaceOcoSpotWsApiMethod define method for creation OCO order list via websocket API
 	OrderListPlaceOcoSpotWsApiMethod WsApiMethodType = "orderList.place.oco"

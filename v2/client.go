@@ -137,6 +137,8 @@ type CancelReplaceMode string
 
 type MarginAccountBorrowRepayType string
 
+type OrderCancelRestrictionsType string
+
 // UseTestnet switch all the API endpoints from production to the testnet
 var UseTestnet = false
 
@@ -338,6 +340,9 @@ const (
 	MarginAccountBorrowRepayStatusPending   string = "PENDING"
 	MarginAccountBorrowRepayStatusConfirmed string = "CONFIRMED"
 	MarginAccountBorrowRepayStatusFailed    string = "FAILED"
+
+	OrderCancelOnlyNew             OrderCancelRestrictionsType = "ONLY_NEW"
+	OrderCancelOnlyPartiallyFilled OrderCancelRestrictionsType = "ONLY_PARTIALLY_FILLED"
 )
 
 func currentTimestamp() int64 {
