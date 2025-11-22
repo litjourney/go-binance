@@ -104,7 +104,7 @@ func (s *OrderCancelWsService) Do(requestID string, request *OrderCancelWsReques
 }
 
 // SyncDo - sends 'order.cancel' request and receives response
-func (s *OrderCancelWsService) SyncDo(requestID string, request *OrderCancelWsRequest) (*CreateOrderWsResponse, error) {
+func (s *OrderCancelWsService) SyncDo(requestID string, request *OrderCancelWsRequest) (*CancelOrderWsResponse, error) {
 	rawData, err := websocket.CreateRequest(
 		websocket.NewRequestData(
 			requestID,
@@ -113,7 +113,7 @@ func (s *OrderCancelWsService) SyncDo(requestID string, request *OrderCancelWsRe
 			s.TimeOffset,
 			s.KeyType,
 		),
-		websocket.OrderPlaceSpotWsApiMethod,
+		websocket.OrderCancelSpotWsApiMethod,
 		request.buildParams(),
 	)
 	if err != nil {
@@ -125,12 +125,12 @@ func (s *OrderCancelWsService) SyncDo(requestID string, request *OrderCancelWsRe
 		return nil, err
 	}
 
-	createOrderWsResponse := &CreateOrderWsResponse{}
-	if err := json.Unmarshal(response, createOrderWsResponse); err != nil {
+	cancelOrderWsResponse := &CancelOrderWsResponse{}
+	if err := json.Unmarshal(response, cancelOrderWsResponse); err != nil {
 		return nil, err
 	}
 
-	return createOrderWsResponse, nil
+	return cancelOrderWsResponse, nil
 }
 
 // ReceiveAllDataBeforeStop waits until all responses will be received from websocket until timeout expired

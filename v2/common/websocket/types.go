@@ -13,6 +13,10 @@ import (
 // WsApiMethodType define method name for websocket API
 type WsApiMethodType string
 
+type WsExchangeInfoSymbolStatusType string
+
+type WsExchangeInfoPermissionType string
+
 // WsApiRequest define common websocket API request
 type WsApiRequest struct {
 	Id     string                 `json:"id"`
@@ -47,8 +51,16 @@ const (
 	// OrderStatusSpotWsApiMethod define method for query order via websocket API
 	OrderStatusSpotWsApiMethod WsApiMethodType = "order.status"
 
+	TimeCheckWsApiMehod WsApiMethodType = "time"
+
+	ExchangeInfoWsApiMehod WsApiMethodType = "exchangeInfo"
+
+	AccountStatusWsApiMethod WsApiMethodType = "account.status"
+
 	// OrderOpenStatusSpotWsApiMethod define method for query open orders via websocket API
 	OrderOpenStatusSpotWsApiMethod WsApiMethodType = "openOrders.status"
+
+	AllOrdersSpotWsApiMethod WsApiMethodType = "allOrders"
 
 	// OrderListPlaceOcoSpotWsApiMethod define method for creation OCO order list via websocket API
 	OrderListPlaceOcoSpotWsApiMethod WsApiMethodType = "orderList.place.oco"
@@ -81,6 +93,40 @@ const (
 
 	// OrderStatusFuturesWsApiMethod define method for query order via websocket API
 	OrderStatusFuturesWsApiMethod WsApiMethodType = "order.status"
+
+	// ExchangeInfo Permission Types
+	PermissionTypeSPOT      WsExchangeInfoPermissionType = "SPOT"
+	PermissionTypeMARGIN    WsExchangeInfoPermissionType = "MARGIN"
+	PermissionTypeLEVERAGED WsExchangeInfoPermissionType = "LEVERAGED"
+	PermissionTypeTRDGRP002 WsExchangeInfoPermissionType = "TRD_GRP_002"
+	PermissionTypeTRDGRP003 WsExchangeInfoPermissionType = "TRD_GRP_003"
+	PermissionTypeTRDGRP004 WsExchangeInfoPermissionType = "TRD_GRP_004"
+	PermissionTypeTRDGRP005 WsExchangeInfoPermissionType = "TRD_GRP_005"
+	PermissionTypeTRDGRP006 WsExchangeInfoPermissionType = "TRD_GRP_006"
+	PermissionTypeTRDGRP007 WsExchangeInfoPermissionType = "TRD_GRP_007"
+	PermissionTypeTRDGRP008 WsExchangeInfoPermissionType = "TRD_GRP_008"
+	PermissionTypeTRDGRP009 WsExchangeInfoPermissionType = "TRD_GRP_009"
+	PermissionTypeTRDGRP010 WsExchangeInfoPermissionType = "TRD_GRP_010"
+	PermissionTypeTRDGRP011 WsExchangeInfoPermissionType = "TRD_GRP_011"
+	PermissionTypeTRDGRP012 WsExchangeInfoPermissionType = "TRD_GRP_012"
+	PermissionTypeTRDGRP013 WsExchangeInfoPermissionType = "TRD_GRP_013"
+	PermissionTypeTRDGRP014 WsExchangeInfoPermissionType = "TRD_GRP_014"
+	PermissionTypeTRDGRP015 WsExchangeInfoPermissionType = "TRD_GRP_015"
+	PermissionTypeTRDGRP016 WsExchangeInfoPermissionType = "TRD_GRP_016"
+	PermissionTypeTRDGRP017 WsExchangeInfoPermissionType = "TRD_GRP_017"
+	PermissionTypeTRDGRP018 WsExchangeInfoPermissionType = "TRD_GRP_018"
+	PermissionTypeTRDGRP019 WsExchangeInfoPermissionType = "TRD_GRP_019"
+	PermissionTypeTRDGRP020 WsExchangeInfoPermissionType = "TRD_GRP_020"
+	PermissionTypeTRDGRP021 WsExchangeInfoPermissionType = "TRD_GRP_021"
+	PermissionTypeTRDGRP022 WsExchangeInfoPermissionType = "TRD_GRP_022"
+	PermissionTypeTRDGRP023 WsExchangeInfoPermissionType = "TRD_GRP_023"
+	PermissionTypeTRDGRP024 WsExchangeInfoPermissionType = "TRD_GRP_024"
+	PermissionTypeTRDGRP025 WsExchangeInfoPermissionType = "TRD_GRP_025"
+
+	SymbolStatusTrading  WsExchangeInfoSymbolStatusType = "TRADING"
+	SymbolStatusEndOfDay WsExchangeInfoSymbolStatusType = "END_OF_DAY"
+	SymbolStatusHalt     WsExchangeInfoSymbolStatusType = "HALT"
+	SymbolStatusBreak    WsExchangeInfoSymbolStatusType = "BREAK"
 )
 
 var (
@@ -147,6 +193,22 @@ func CreateRequest(reqData RequestData, method WsApiMethodType, params map[strin
 
 	req := WsApiRequest{
 		Id:     reqData.requestID,
+		Method: method,
+		Params: params,
+	}
+
+	rawData, err := json.Marshal(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return rawData, nil
+}
+
+// CreateRequest creates  ws request
+func CreateRequestWithSigned(requestID string, method WsApiMethodType, params map[string]interface{}) ([]byte, error) {
+	req := WsApiRequest{
+		Id:     requestID,
 		Method: method,
 		Params: params,
 	}

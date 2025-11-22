@@ -96,7 +96,7 @@ func (s *OrderStatusWsService) Do(requestID string, request *OrderStatusWsReques
 }
 
 // SyncDo - sends 'order.status' request and receives response
-func (s *OrderStatusWsService) SyncDo(requestID string, request *OrderStatusWsRequest) (*CreateOrderWsResponse, error) {
+func (s *OrderStatusWsService) SyncDo(requestID string, request *OrderStatusWsRequest) (*StatusOrderWsResponse, error) {
 	rawData, err := websocket.CreateRequest(
 		websocket.NewRequestData(
 			requestID,
@@ -105,7 +105,7 @@ func (s *OrderStatusWsService) SyncDo(requestID string, request *OrderStatusWsRe
 			s.TimeOffset,
 			s.KeyType,
 		),
-		websocket.OrderPlaceSpotWsApiMethod,
+		websocket.OrderStatusSpotWsApiMethod,
 		request.buildParams(),
 	)
 	if err != nil {
@@ -117,12 +117,12 @@ func (s *OrderStatusWsService) SyncDo(requestID string, request *OrderStatusWsRe
 		return nil, err
 	}
 
-	createOrderWsResponse := &CreateOrderWsResponse{}
-	if err := json.Unmarshal(response, createOrderWsResponse); err != nil {
+	statusOrderWsResponse := &StatusOrderWsResponse{}
+	if err := json.Unmarshal(response, statusOrderWsResponse); err != nil {
 		return nil, err
 	}
 
-	return createOrderWsResponse, nil
+	return statusOrderWsResponse, nil
 }
 
 // ReceiveAllDataBeforeStop waits until all responses will be received from websocket until timeout expired
@@ -168,15 +168,13 @@ func (s *OrderStatusWsRequest) OrigClientOrderID(origClientOrderId string) *Orde
 }
 
 // CreateOrderResult define order creation result
-type StatusOrderResult struct {
-	Order
-}
+type StatusOpenOrderResult *[]Order
 
 // CreateOrderWsResponse define 'order.status' websocket API response
 type StatusOrderWsResponse struct {
-	Id     string            `json:"id"`
-	Status int               `json:"status"`
-	Result StatusOrderResult `json:"result"`
+	Id     string                `json:"id"`
+	Status int                   `json:"status"`
+	Result StatusOpenOrderResult `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`
