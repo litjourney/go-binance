@@ -170,13 +170,13 @@ func (s *OrderCancelWsRequest) OrderID(orderId int64) *OrderCancelWsRequest {
 	return s
 }
 
-func (s *OrderCancelWsRequest) OrigClientOrderID(origClientOrderId string) *OrderCancelWsRequest {
-	s.origClientOrderId = &origClientOrderId
+func (s *OrderCancelWsRequest) OrigClientOrderID(origClientOrderId *string) *OrderCancelWsRequest {
+	s.origClientOrderId = origClientOrderId
 	return s
 }
 
-func (s *OrderCancelWsRequest) NewClientOrderID(newClientOrderId string) *OrderCancelWsRequest {
-	s.newClientOrderId = &newClientOrderId
+func (s *OrderCancelWsRequest) NewClientOrderID(newClientOrderId *string) *OrderCancelWsRequest {
+	s.newClientOrderId = newClientOrderId
 	return s
 }
 
