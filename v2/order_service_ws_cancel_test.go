@@ -116,8 +116,8 @@ func (s *orderCancelServiceWsTestSuite) TestSyncDo() {
 	expectedResponse := CancelOrderWsResponse{
 		Id:     s.requestID,
 		Status: 200,
-		Result: CreateOrderResult{
-			CreateOrderResponse{
+		Result: CancelOrderResult{
+			CancelOrderResponse{
 				Symbol:        s.symbol,
 				OrderID:       s.orderId,
 				ClientOrderID: s.newClientOrderId,

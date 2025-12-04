@@ -194,7 +194,7 @@ type CancelOrderResult struct {
 type CancelOrderWsResponse struct {
 	Id     string            `json:"id"`
 	Status int               `json:"status"`
-	Result CreateOrderResult `json:"result"`
+	Result CancelOrderResult `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`
