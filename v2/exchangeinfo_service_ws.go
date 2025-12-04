@@ -14,7 +14,7 @@ type ExchangeInfoWsService struct {
 }
 
 // NewExchangeInfoWsService init TimeCheckWsService
-func NewExchangeInfoWsService(apiKey, secretKey string) (*ExchangeInfoWsService, error) {
+func NewExchangeInfoWsService() (*ExchangeInfoWsService, error) {
 	conn, err := websocket.NewConnection(WsApiInitReadWriteConn, WebsocketKeepalive, WebsocketTimeoutReadWriteConnection)
 	if err != nil {
 		return nil, err
