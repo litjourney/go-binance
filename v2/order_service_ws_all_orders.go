@@ -64,23 +64,23 @@ func (s *AllOrdersWsRequest) RecvWindow(recvWindow uint16) *AllOrdersWsRequest {
 	return s
 }
 
-func (s *AllOrdersWsRequest) OrderId(orderId int64) *AllOrdersWsRequest {
-	s.orderId = &orderId
+func (s *AllOrdersWsRequest) OrderId(orderId *int64) *AllOrdersWsRequest {
+	s.orderId = orderId
 	return s
 }
 
-func (s *AllOrdersWsRequest) StartTime(startTime int64) *AllOrdersWsRequest {
-	s.startTime = &startTime
+func (s *AllOrdersWsRequest) StartTime(startTime *int64) *AllOrdersWsRequest {
+	s.startTime = startTime
 	return s
 }
 
-func (s *AllOrdersWsRequest) EndTime(endTime int64) *AllOrdersWsRequest {
-	s.endTime = &endTime
+func (s *AllOrdersWsRequest) EndTime(endTime *int64) *AllOrdersWsRequest {
+	s.endTime = endTime
 	return s
 }
 
-func (s *AllOrdersWsRequest) Limit(limit int) *AllOrdersWsRequest {
-	s.limit = &limit
+func (s *AllOrdersWsRequest) Limit(limit *int) *AllOrdersWsRequest {
+	s.limit = limit
 	return s
 }
 

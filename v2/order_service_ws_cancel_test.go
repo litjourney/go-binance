@@ -60,8 +60,8 @@ func (s *orderCancelServiceWsTestSuite) SetupTest() {
 	s.request = NewOrderCancelWsRequest().
 		Symbol(s.symbol).
 		OrderID(s.orderId).
-		OrigClientOrderID(s.origClientOrderId).
-		NewClientOrderID(s.newClientOrderId).
+		OrigClientOrderID(&s.origClientOrderId).
+		NewClientOrderID(&s.newClientOrderId).
 		CancelRestrictions(s.cancelRestrictions).
 		RecvWindow(s.recvWindow)
 }

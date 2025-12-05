@@ -59,10 +59,10 @@ func (s *allOrdersServiceWsTestSuite) SetupTest() {
 
 	s.request = NewAllOrdersWsRequest().
 		Symbol(s.symbol).
-		OrderId(s.orderId).
-		StartTime(s.startTime).
-		EndTime(s.endTime).
-		Limit(s.limit).
+		OrderId(&s.orderId).
+		StartTime(&s.startTime).
+		EndTime(&s.endTime).
+		Limit(&s.limit).
 		RecvWindow(s.recvWindow)
 }
 

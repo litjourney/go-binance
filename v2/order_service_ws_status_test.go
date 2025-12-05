@@ -56,7 +56,7 @@ func (s *orderStatusServiceWsTestSuite) SetupTest() {
 	s.request = NewOrderStatusWsRequest().
 		Symbol(s.symbol).
 		OrderID(s.orderId).
-		OrigClientOrderID(s.origClientOrderId).
+		OrigClientOrderID(&s.origClientOrderId).
 		RecvWindow(s.recvWindow)
 }
 
@@ -110,14 +110,10 @@ func (s *orderStatusServiceWsTestSuite) TestSyncDo() {
 	expectedResponse := StatusOrderWsResponse{
 		Id:     s.requestID,
 		Status: 200,
-		Result: StatusOpenOrderResult(
-			&[]Order{
-				{
-					Symbol:  s.symbol,
-					OrderID: s.orderId,
-				},
-			},
-		),
+		Result: Order{
+			Symbol:  s.symbol,
+			OrderID: s.orderId,
+		},
 	}
 
 	rawResponseData, err := json.Marshal(expectedResponse)
@@ -128,9 +124,9 @@ func (s *orderStatusServiceWsTestSuite) TestSyncDo() {
 	response, err := s.service.SyncDo(s.requestID, s.request)
 	s.Require().NoError(err)
 	// Dereference the pointer to access the slice
-	resultSlice := *response.Result
-	s.Equal(s.symbol, resultSlice[0].Symbol)
-	s.Equal(s.orderId, resultSlice[0].OrderID)
+	resultSlice := response.Result
+	s.Equal(s.symbol, resultSlice.Symbol)
+	s.Equal(s.orderId, resultSlice.OrderID)
 }
 
 func (s *orderStatusServiceWsTestSuite) TestSyncDo_EmptyRequestID() {

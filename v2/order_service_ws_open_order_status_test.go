@@ -49,8 +49,8 @@ func (s *openOrderStatusServiceWsTestSuite) SetupTest() {
 		KeyType:   s.signedKey,
 	}
 
-	s.request = NewOpenOpenOrderStatusWsRequest().
-		Symbol(s.symbol).
+	s.request = NewOpenOrderStatusWsRequest().
+		Symbol(&s.symbol).
 		RecvWindow(s.recvWindow)
 }
 
