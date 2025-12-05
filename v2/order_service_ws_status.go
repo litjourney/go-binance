@@ -162,19 +162,16 @@ func (s *OrderStatusWsRequest) OrderID(orderId int64) *OrderStatusWsRequest {
 	return s
 }
 
-func (s *OrderStatusWsRequest) OrigClientOrderID(origClientOrderId string) *OrderStatusWsRequest {
-	s.origClientOrderId = &origClientOrderId
+func (s *OrderStatusWsRequest) OrigClientOrderID(origClientOrderId *string) *OrderStatusWsRequest {
+	s.origClientOrderId = origClientOrderId
 	return s
 }
 
-// CreateOrderResult define order creation result
-type StatusOpenOrderResult *[]Order
-
 // CreateOrderWsResponse define 'order.status' websocket API response
 type StatusOrderWsResponse struct {
-	Id     string                `json:"id"`
-	Status int                   `json:"status"`
-	Result StatusOpenOrderResult `json:"result"`
+	Id     string `json:"id"`
+	Status int    `json:"status"`
+	Result Order  `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`
