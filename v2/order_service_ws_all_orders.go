@@ -185,14 +185,11 @@ func (s *AllOrdersWsService) GetReconnectCount() int64 {
 	return s.c.GetReconnectCount()
 }
 
-// CreateOrderResult define order creation result
-type AllOrderResult []*Order
-
 // CreateOrderWsResponse define 'allOrders' websocket API response
 type AllOrderWsResponse struct {
-	Id     string         `json:"id"`
-	Status int            `json:"status"`
-	Result AllOrderResult `json:"result"`
+	Id     string   `json:"id"`
+	Status int      `json:"status"`
+	Result []*Order `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`

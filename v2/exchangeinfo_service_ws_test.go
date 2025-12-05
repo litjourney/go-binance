@@ -73,14 +73,12 @@ func (s *exchangeInfoServiceWsTestSuite) TestSyncDo() {
 	expectedResponse := ExchangeInfoWsResponse{
 		Id:     s.requestID,
 		Status: 200,
-		Result: ExchangeInfoResult{
-			ExchangeInfo{
-				Timezone:   "UTC",
-				ServerTime: 123456789,
-				Symbols: []Symbol{
-					{
-						Symbol: s.symbol,
-					},
+		Result: ExchangeInfo{
+			Timezone:   "UTC",
+			ServerTime: 123456789,
+			Symbols: []Symbol{
+				{
+					Symbol: s.symbol,
 				},
 			},
 		},

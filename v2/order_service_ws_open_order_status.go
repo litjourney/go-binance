@@ -154,13 +154,11 @@ func (s *OpenOrderStatusWsRequest) RecvWindow(recvWindow uint16) *OpenOrderStatu
 	return s
 }
 
-type StatusOpenOrdersResult []*Order
-
 // CreateOrderWsResponse define 'openOrders.status' websocket API response
 type StatusOpenOrderWsResponse struct {
-	Id     string                 `json:"id"`
-	Status int                    `json:"status"`
-	Result StatusOpenOrdersResult `json:"result"`
+	Id     string   `json:"id"`
+	Status int      `json:"status"`
+	Result []*Order `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`

@@ -104,28 +104,26 @@ func (s *accountStatusServiceWsTestSuite) TestSyncDo() {
 	expectedResponse := AccountStatusWsResponse{
 		Id:     s.requestID,
 		Status: 200,
-		Result: AccountStatusResult{
-			Account: Account{
-				MakerCommission:  15,
-				TakerCommission:  15,
-				BuyerCommission:  0,
-				SellerCommission: 0,
-				CanTrade:         true,
-				CanWithdraw:      true,
-				CanDeposit:       true,
-				UpdateTime:       123456789,
-				AccountType:      "SPOT",
-				Balances: []Balance{
-					{
-						Asset:  "BTC",
-						Free:   "4723846.89208129",
-						Locked: "0.00000000",
-					},
-					{
-						Asset:  "LTC",
-						Free:   "4763368.68006011",
-						Locked: "0.00000000",
-					},
+		Result: Account{
+			MakerCommission:  15,
+			TakerCommission:  15,
+			BuyerCommission:  0,
+			SellerCommission: 0,
+			CanTrade:         true,
+			CanWithdraw:      true,
+			CanDeposit:       true,
+			UpdateTime:       123456789,
+			AccountType:      "SPOT",
+			Balances: []Balance{
+				{
+					Asset:  "BTC",
+					Free:   "4723846.89208129",
+					Locked: "0.00000000",
+				},
+				{
+					Asset:  "LTC",
+					Free:   "4763368.68006011",
+					Locked: "0.00000000",
 				},
 			},
 		},

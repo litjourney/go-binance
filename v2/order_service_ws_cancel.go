@@ -185,16 +185,11 @@ func (s *OrderCancelWsRequest) CancelRestrictions(cancelRestrictions OrderCancel
 	return s
 }
 
-// CreateOrderResult define order creation result
-type CancelOrderResult struct {
-	CancelOrderResponse
-}
-
 // CreateOrderWsResponse define 'order.cancel' websocket API response
 type CancelOrderWsResponse struct {
-	Id     string            `json:"id"`
-	Status int               `json:"status"`
-	Result CancelOrderResult `json:"result"`
+	Id     string              `json:"id"`
+	Status int                 `json:"status"`
+	Result CancelOrderResponse `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`

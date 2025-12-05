@@ -275,16 +275,11 @@ func (s *OrderCreateWsRequest) NewOrderRespType(newOrderRespType NewOrderRespTyp
 	return s
 }
 
-// CreateOrderResult define order creation result
-type CreateOrderResult struct {
-	CreateOrderResponse
-}
-
 // CreateOrderWsResponse define 'order.place' websocket API response
 type CreateOrderWsResponse struct {
-	Id     string            `json:"id"`
-	Status int               `json:"status"`
-	Result CreateOrderResult `json:"result"`
+	Id     string              `json:"id"`
+	Status int                 `json:"status"`
+	Result CreateOrderResponse `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`

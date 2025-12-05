@@ -158,16 +158,11 @@ func (s *ExchangeInfoWsService) GetReconnectCount() int64 {
 	return s.c.GetReconnectCount()
 }
 
-// ExchangeInfoResult define order creation result
-type ExchangeInfoResult struct {
-	ExchangeInfo
-}
-
 // ExchangeInfoWsResponse define 'exchangeInfo' websocket API response
 type ExchangeInfoWsResponse struct {
-	Id     string             `json:"id"`
-	Status int                `json:"status"`
-	Result ExchangeInfoResult `json:"result"`
+	Id     string       `json:"id"`
+	Status int          `json:"status"`
+	Result ExchangeInfo `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`

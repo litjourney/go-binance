@@ -129,16 +129,14 @@ func (s *orderPlaceServiceWsTestSuite) TestOrderPlaceSync() {
 	orderPlaceResponse := CreateOrderWsResponse{
 		Id:     s.requestID,
 		Status: 200,
-		Result: CreateOrderResult{
-			CreateOrderResponse{
-				Symbol:        s.symbol,
-				OrderID:       0,
-				ClientOrderID: s.newClientOrderID,
-				Price:         s.price,
-				TimeInForce:   s.timeInForce,
-				Type:          s.orderType,
-				Side:          s.side,
-			},
+		Result: CreateOrderResponse{
+			Symbol:        s.symbol,
+			OrderID:       0,
+			ClientOrderID: s.newClientOrderID,
+			Price:         s.price,
+			TimeInForce:   s.timeInForce,
+			Type:          s.orderType,
+			Side:          s.side,
 		},
 	}
 

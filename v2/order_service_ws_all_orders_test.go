@@ -116,7 +116,7 @@ func (s *allOrdersServiceWsTestSuite) TestSyncDo() {
 	expectedResponse := AllOrderWsResponse{
 		Id:     s.requestID,
 		Status: 200,
-		Result: AllOrderResult{
+		Result: []*Order{
 			{
 				Symbol:  s.symbol,
 				OrderID: s.orderId,

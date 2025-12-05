@@ -149,16 +149,11 @@ func (s *AccountStatusWsService) GetReconnectCount() int64 {
 	return s.c.GetReconnectCount()
 }
 
-// AccountStatusResult define account status result
-type AccountStatusResult struct {
-	Account
-}
-
 // AccountStatusWsResponse define 'account.status' websocket API response
 type AccountStatusWsResponse struct {
-	Id     string              `json:"id"`
-	Status int                 `json:"status"`
-	Result AccountStatusResult `json:"result"`
+	Id     string  `json:"id"`
+	Status int     `json:"status"`
+	Result Account `json:"result"`
 
 	// error response
 	Error *common.APIError `json:"error,omitempty"`
