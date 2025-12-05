@@ -39,7 +39,7 @@ func NewOpenOrderStatusWsService(apiKey, secretKey string) (*OpenOrderStatusWsSe
 
 // OpenOpenOrderStatusWsRequest parameters for 'openOrders.status' websocket API
 type OpenOrderStatusWsRequest struct {
-	symbol     string
+	symbol     *string
 	recvWindow *uint16
 }
 
@@ -54,8 +54,13 @@ func (s *OpenOrderStatusWsRequest) GetParams() map[string]interface{} {
 
 // buildParams builds params
 func (s *OpenOrderStatusWsRequest) buildParams() params {
-	m := params{
-		"symbol": s.symbol,
+	var m params
+	if s.symbol == nil {
+		m = params{}
+	} else {
+		m = params{
+			"symbol": s.symbol,
+		}
 	}
 	if s.recvWindow != nil {
 		m["recvWindow"] = *s.recvWindow
@@ -138,7 +143,7 @@ func (s *OpenOrderStatusWsService) GetReconnectCount() int64 {
 }
 
 // Symbol set symbol
-func (s *OpenOrderStatusWsRequest) Symbol(symbol string) *OpenOrderStatusWsRequest {
+func (s *OpenOrderStatusWsRequest) Symbol(symbol *string) *OpenOrderStatusWsRequest {
 	s.symbol = symbol
 	return s
 }
