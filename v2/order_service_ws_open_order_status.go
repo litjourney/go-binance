@@ -44,7 +44,7 @@ type OpenOrderStatusWsRequest struct {
 }
 
 // NewOpenOrderStatusWsRequest init OpenOrderStatusWsRequest
-func NewOpenOpenOrderStatusWsRequest() *OpenOrderStatusWsRequest {
+func NewOpenOrderStatusWsRequest() *OpenOrderStatusWsRequest {
 	return &OpenOrderStatusWsRequest{}
 }
 
