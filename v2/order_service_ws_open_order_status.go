@@ -59,7 +59,7 @@ func (s *OpenOrderStatusWsRequest) buildParams() params {
 		m = params{}
 	} else {
 		m = params{
-			"symbol": s.symbol,
+			"symbol": *s.symbol,
 		}
 	}
 	if s.recvWindow != nil {
